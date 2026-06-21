@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sameen Gul — A Beautiful Digital Tribute</title>
+  <meta name="description" content="A breathtaking premium digital tribute to Sameen Gul. Built with admiration, warmth, memories, and heartfelt messages.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Custom Glowing Cursor -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-aura" id="cursor-aura"></div>
+
+  <!-- Background Environment Canvas (Fireflies/Petals) -->
+  <canvas id="env-canvas"></canvas>
+
+  <!-- Aurora Mesh Background Elements -->
+  <div class="aurora-bg">
+    <div class="aurora-orb aurora-orb-1"></div>
+    <div class="aurora-orb aurora-orb-2"></div>
+    <div class="aurora-orb aurora-orb-3"></div>
+    <div class="aurora-orb aurora-orb-4"></div>
+  </div>
+
+  <!-- 1. Ethereal Loading Screen -->
+  <div id="loading-screen" aria-live="polite">
+    <div class="loader-container">
+      <svg class="loading-flower" viewBox="0 0 100 100" width="120" height="120" aria-label="Blooming Flower Animation">
+        <!-- SVG Path for detailed blooming lotus shape -->
+        <path d="M50,15 C45,35 30,40 10,50 C30,60 45,65 50,85 C55,65 70,60 90,50 C70,40 55,35 50,15 Z" fill="none" stroke-width="2" class="flower-outer" />
+        <path d="M50,30 C47,42 38,45 25,50 C38,55 47,58 50,70 C53,58 62,55 75,50 C62,45 53,42 50,30 Z" fill="none" stroke-width="1.5" class="flower-inner" />
+        <circle cx="50" cy="50" r="3" class="flower-center" />
+      </svg>
+      <div class="loading-text">Preparing something beautiful...</div>
+    </div>
+  </div>
+
+  <!-- 2. Glassmorphic Navigation -->
+  <nav class="navbar" id="navbar" aria-label="Main Navigation">
+    <a href="#" class="navbar-logo interactive-element">
+      <span>🌸</span> Sameen Gul
+    </a>
+    
+    <div class="navbar-links" id="nav-links">
+      <a href="#home" class="nav-link interactive-element">Home</a>
+      <a href="#about" class="nav-link interactive-element">About</a>
+      <a href="#qualities" class="nav-link interactive-element">Qualities</a>
+      <a href="#gallery" class="nav-link interactive-element">Gallery</a>
+      <a href="#timeline" class="nav-link interactive-element">Moments</a>
+      <a href="#memory-wall" class="nav-link interactive-element">Messages</a>
+      
+      <div class="nav-controls">
+        <button class="theme-toggle interactive-element" id="theme-btn" aria-label="Toggle Light/Dark Theme">
+          <!-- Sun Icon SVG -->
+          <svg class="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon SVG -->
+          <svg class="moon-icon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <button class="mobile-toggle interactive-element" id="mobile-toggle" aria-label="Toggle Navigation Drawer" aria-expanded="false" aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- 3. Hero Section (The Unveiling) -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="hero-pretitle" id="typewriter-pre"></span>
+      <h1 class="hero-title">Sameen Gul</h1>
+      <p class="hero-subtitle">
+        A little corner of the internet made with admiration, beautiful memories, and heartfelt words.
+      </p>
+      <div class="hero-actions">
+        <a href="#about" class="btn-pill btn-primary interactive-element">
+          Discover <span>🌸</span>
+        </a>
+        <a href="#memory-wall" class="btn-pill btn-secondary interactive-element">
+          Read Messages <span>💌</span>
+        </a>
+      </div>
+    </div>
+    <a href="#about" class="hero-scroll-indicator interactive-element" aria-label="Scroll to about section">
+      <span></span>
+      Scroll
+    </a>
+  </section>
+
+  <!-- 4. The "Who is Sameen?" Split-Layout -->
+  <section class="reveal" id="about">
+    <div class="about-split">
+      <div class="about-image-side">
+        <div class="about-image-wrapper">
+          <div class="about-image-inner">
+            <!-- Botanical gradient/SVG artwork as a floating placeholder -->
+            <div class="floral-art-placeholder">
+              <div class="floral-art-petal petal-1"></div>
+              <div class="floral-art-petal petal-2"></div>
+              <div class="floral-art-petal petal-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-card glass-panel">
+        <span class="section-subtitle">Admiration</span>
+        <h2 class="section-title" style="margin-bottom: 24px;">Who is Sameen?</h2>
+        <p class="about-text">
+          Sameen is a rare blend of elegance and warmth, bringing light to everyone who has the privilege of knowing her. Her personality resonates with the peaceful harmony of a blooming spring garden.
+        </p>
+        <p class="about-text" style="margin-bottom: 32px;">
+          This space is created to celebrate the beautiful qualities that define her. From her quiet intelligence to her spontaneous kindness, she makes the world a softer, brighter place.
+        </p>
+        <ul class="about-qualities-bullets">
+          <li><span>🌸</span> Spreads kindness effortlessly</li>
+          <li><span>✨</span> Illuminates spaces with intelligence</li>
+          <li><span>🌷</span> Carries herself with quiet grace</li>
+          <li><span>❤️</span> Radiates deep compassion</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Beautiful Qualities Interactive Grid -->
+  <section class="reveal" id="qualities">
+    <div class="section-title-wrap">
+      <span class="section-subtitle">Vibrant Facets</span>
+      <h2 class="section-title">Beautiful Qualities</h2>
+    </div>
+    
+    <div class="qualities-grid">
+      <!-- 1. Kindness -->
+      <div class="quality-card glass-panel quality-card-1 interactive-element">
+        <span class="quality-icon">🌸</span>
+        <h3 class="quality-title">Kindness</h3>
+        <p class="quality-desc">A gentle warmth that treats every soul with understanding, turning simple moments into cherished memories.</p>
+      </div>
+      <!-- 2. Intelligence -->
+      <div class="quality-card glass-panel quality-card-2 interactive-element">
+        <span class="quality-icon">✨</span>
+        <h3 class="quality-title">Intelligence</h3>
+        <p class="quality-desc">A brilliant mind filled with curiosity and wisdom, navigating complex ideas with clarity and vision.</p>
+      </div>
+      <!-- 3. Grace -->
+      <div class="quality-card glass-panel quality-card-3 interactive-element">
+        <span class="quality-icon">🌷</span>
+        <h3 class="quality-title">Grace</h3>
+        <p class="quality-desc">An effortless, tranquil elegance that defines how she speaks, walks, and touches the lives of others.</p>
+      </div>
+      <!-- 4. Compassion -->
+      <div class="quality-card glass-panel quality-card-4 interactive-element">
+        <span class="quality-icon">❤️</span>
+        <h3 class="quality-title">Compassion</h3>
+        <p class="quality-desc">A nurturing heart that listens deeply, offering a soothing haven and comfort to those around her.</p>
+      </div>
+      <!-- 5. Creativity -->
+      <div class="quality-card glass-panel quality-card-5 interactive-element">
+        <span class="quality-icon">🌼</span>
+        <h3 class="quality-title">Creativity</h3>
+        <p class="quality-desc">An artistic soul that sees the world in vivid colors, transforming ordinary concepts into lovely works of art.</p>
+      </div>
+      <!-- 6. Positivity -->
+      <div class="quality-card glass-panel quality-card-6 interactive-element">
+        <span class="quality-icon">☀️</span>
+        <h3 class="quality-title">Positivity</h3>
+        <p class="quality-desc">A radiant glow of optimism that highlights the silver lining in every cloud, inspiring joy and confidence.</p>
+      </div>
+      <!-- 7. Calmness -->
+      <div class="quality-card glass-panel quality-card-7 interactive-element">
+        <span class="quality-icon">🌙</span>
+        <h3 class="quality-title">Calmness</h3>
+        <p class="quality-desc">A serene presence like a quiet lake at dawn, bringing order, peace, and reassurance to turbulent times.</p>
+      </div>
+      <!-- 8. Beauty -->
+      <div class="quality-card glass-panel quality-card-8 interactive-element">
+        <span class="quality-icon">🌹</span>
+        <h3 class="quality-title">Beauty</h3>
+        <p class="quality-desc">A gorgeous harmony of inner goodness and outward elegance that shines uniquely and unforgettable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Masonry Memory Gallery -->
+  <section class="reveal" id="gallery">
+    <div class="section-title-wrap">
+      <span class="section-subtitle">Visual Serenade</span>
+      <h2 class="section-title">Memory Gallery</h2>
+    </div>
+    
+    <div class="gallery-wrap">
+      <div class="gallery-masonry" id="gallery-grid">
+        <!-- Masonry Item 1 -->
+        <div class="gallery-item tall interactive-element" data-caption="A soft, morning smile" data-mesh="g-mesh-1">
+          <div class="gallery-img-container">
+            <div class="gallery-img-placeholder g-mesh-1"></div>
+          </div>
+          <div class="gallery-caption-overlay">
+            <div class="gallery-title-text">Smile</div>
+            <div class="gallery-subtitle-text">Soft Morning</div>
+          </div>
+        </div>
+        <!-- Masonry Item 2 -->
+        <div class="gallery-item interactive-element" data-caption="Golden sunshine filtering through branches" data-mesh="g-mesh-2">
+          <div class="gallery-img-container">
+            <div class="gallery-img-placeholder g-mesh-2"></div>
+          </div>
+          <div class="gallery-caption-overlay">
+            <div class="gallery-title-text">Sunshine</div>
+            <div class="gallery-subtitle-text">Golden Glow</div>
+          </div>
+        </div>
+        <!-- Masonry Item 3 -->
+        <div class="gallery-item wide interactive-element" data-caption="A quiet path framed by cherry blossoms" data-mesh="g-mesh-3">
+          <div class="gallery-img-container">
+            <div class="gallery-img-placeholder g-mesh-3"></div>
+          </div>
+          <div class="gallery-caption-overlay">
+            <div class="gallery-title-text">Serenity</div>
+            <div class="gallery-subtitle-text">Cherry Blossom Path</div>
+          </div>
+        </div>
+        <!-- Masonry Item 4 -->
+        <div class="gallery-item interactive-element" data-caption="Glistening raindrops on a single pink rose" data-mesh="g-mesh-4">
+          <div class="gallery-img-container">
+            <div class="gallery-img-placeholder g-mesh-4"></div>
+          </div>
+          <div class="gallery-caption-overlay">
+            <div class="gallery-title-text">Raindrops</div>
+            <div class="gallery-subtitle-text">Rose Petals</div>
+          </div>
+        </div>
+        <!-- Masonry Item 5 -->
+        <div class="gallery-item tall interactive-element" data-caption="Dreamy lavender fields stretching to the horizon" data-mesh="g-mesh-5">
+          <div class="gallery-img-container">
+            <div class="gallery-img-placeholder g-mesh-5"></div>
+          </div>
+          <div class="gallery-caption-overlay">
+            <div class="gallery-title-text">Dreamscape</div>
+            <div class="gallery-subtitle-text">Lavender Fields</div>
+          </div>
+        </div>
+        <!-- Masonry Item 6 -->
+        <div class="gallery-item wide interactive-element" data-caption="Soft glowing fireflies dancing in the twilight" data-mesh="g-mesh-6">
+          <div class="gallery-img-container">
+            <div class="gallery-img-placeholder g-mesh-6"></div>
+          </div>
+          <div class="gallery-caption-overlay">
+            <div class="gallery-title-text">Bioluminescence</div>
+            <div class="gallery-subtitle-text">Firefly Dance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Overlay -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+    <button class="lightbox-close interactive-element" id="lightbox-close" aria-label="Close Gallery Lightbox">&times;</button>
+    <div class="lightbox-content">
+      <!-- Holds the mesh placeholder container inside light box -->
+      <div id="lightbox-img-holder" class="lightbox-img-placeholder"></div>
+    </div>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <!-- 7. Heartfelt Messages Timeline -->
+  <section id="timeline">
+    <div class="section-title-wrap">
+      <span class="section-subtitle">Beautiful Moments</span>
+      <h2 class="section-title">Heartfelt Messages</h2>
+    </div>
+    
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
+      
+      <!-- Timeline Item 1 -->
+      <div class="timeline-item">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card glass-panel reveal-right">
+          <p class="timeline-quote">"Some people make places beautiful. Some people make moments beautiful. You somehow do both."</p>
+          <span class="timeline-author">A Warm Note</span>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 2 -->
+      <div class="timeline-item">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card glass-panel reveal-left">
+          <p class="timeline-quote">"Your quiet grace acts like a soothing balm, making even the most stressful days feel calm and hopeful."</p>
+          <span class="timeline-author">A Sincere Thought</span>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 3 -->
+      <div class="timeline-item">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card glass-panel reveal-right">
+          <p class="timeline-quote">"Seeing you pursue your goals with such dedication and clever insight is truly inspiring to watch."</p>
+          <span class="timeline-author">An Admirer</span>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 4 -->
+      <div class="timeline-item">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card glass-panel reveal-left">
+          <p class="timeline-quote">"May your life always be filled with the same boundless kindness and joy you selflessly share with everyone."</p>
+          <span class="timeline-author">With Warmth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Glass-Overlay Quote Carousel -->
+  <section class="quote-carousel-section reveal">
+    <div class="carousel-container">
+      <!-- Quote 1 -->
+      <div class="carousel-slide active" data-index="0">
+        <p class="carousel-quote-text">"Grace is not just in how one looks, but in how one treats the world."</p>
+        <span class="carousel-quote-author">Sameen's Philosophy</span>
+      </div>
+      <!-- Quote 2 -->
+      <div class="carousel-slide" data-index="1">
+        <p class="carousel-quote-text">"Kindness is like spring flowers; it brings beauty to the hardest soil."</p>
+        <span class="carousel-quote-author">Warm Adages</span>
+      </div>
+      <!-- Quote 3 -->
+      <div class="carousel-slide" data-index="2">
+        <p class="carousel-quote-text">"A brilliant mind shines brightly, but a compassionate heart shines eternally."</p>
+        <span class="carousel-quote-author">Heartfelt Wisdom</span>
+      </div>
+    </div>
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="carousel-dot active interactive-element" data-slide="0" aria-label="Go to slide 1"></button>
+      <button class="carousel-dot interactive-element" data-slide="1" aria-label="Go to slide 2"></button>
+      <button class="carousel-dot interactive-element" data-slide="2" aria-label="Go to slide 3"></button>
+    </div>
+  </section>
+
+  <!-- 9. Interactive "Flip-Card" Compliments -->
+  <section class="reveal">
+    <div class="section-title-wrap">
+      <span class="section-subtitle">Tactile Compliments</span>
+      <h2 class="section-title">Flip for a Smile</h2>
+    </div>
+    
+    <div class="flip-grid" id="compliments-deck">
+      <!-- Flip Card 1 -->
+      <div class="flip-card interactive-element" role="button" aria-label="Interactive card. Click to flip for a compliment.">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span class="card-icon">🌸</span>
+            <h3>Tap Me</h3>
+            <p>To reveal a sweet truth</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="compliment-text">Your presence brings a soft, peaceful warmth wherever you are.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Flip Card 2 -->
+      <div class="flip-card interactive-element" role="button" aria-label="Interactive card. Click to flip for a compliment.">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span class="card-icon">✨</span>
+            <h3>Tap Me</h3>
+            <p>To reveal a sweet truth</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="compliment-text">You possess a brilliant mind and illuminate the world with your wisdom.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Flip Card 3 -->
+      <div class="flip-card interactive-element" role="button" aria-label="Interactive card. Click to flip for a compliment.">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span class="card-icon">🌷</span>
+            <h3>Tap Me</h3>
+            <p>To reveal a sweet truth</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="compliment-text">You carry yourself with a beautiful grace that inspires everyone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. The Memory Wall (Client-Side Storage) -->
+  <section class="reveal" id="memory-wall">
+    <div class="memory-wall-section">
+      <div class="memory-wall-card glass-panel">
+        <span class="section-subtitle">Shared Admiration</span>
+        <h2 class="section-title" style="margin-bottom: 24px; text-align: center;">The Memory Wall</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 32px;">
+          Leave a sweet note or message here. Your message will be saved locally and pinned to this wall!
+        </p>
+        
+        <form id="note-form" class="memory-input-group">
+          <textarea 
+            id="note-input" 
+            class="memory-textarea interactive-element" 
+            placeholder="Type your message for Sameen here..." 
+            aria-label="Message text area" 
+            required></textarea>
+          <div style="text-align: center;">
+            <button type="submit" class="btn-pill btn-primary interactive-element">
+              Pin to Memory Wall <span>📌</span>
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Pinned Notes Wall Grid -->
+      <div class="memory-wall-pinboard" id="pinboard" aria-live="polite">
+        <!-- Notes dynamically populated via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. The Surprise Interaction -->
+  <section class="reveal">
+    <div class="surprise-section">
+      <span class="section-subtitle">A Tiny Gift</span>
+      <h2 class="section-title" style="margin-bottom: 28px;">A Surprise Awaits</h2>
+      <p style="color: var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Click the glowing button below to trigger a shower of spring petals and open a heartfelt token.
+      </p>
+      <button class="btn-pill surprise-btn interactive-element" id="surprise-trigger">
+        Open Surprise 🌸
+      </button>
+    </div>
+  </section>
+
+  <!-- Surprise Modal Overlay -->
+  <div class="modal-overlay" id="surprise-modal" aria-hidden="true" role="dialog" aria-labelledby="surprise-title">
+    <div class="modal-card glass-panel">
+      <span class="modal-flower-icon">🌸</span>
+      <h3 class="modal-title" id="surprise-title">A Simple Reminder</h3>
+      <p class="modal-text">Thank you for simply being you.</p>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; line-height: 1.5;">
+        You bring magic into the ordinary and hope into the dark. Keep blooming.
+      </p>
+      <button class="btn-pill btn-primary modal-close-btn interactive-element" id="modal-close">
+        Close 🌸
+      </button>
+    </div>
+  </div>
+
+  <!-- 12. Contact Form & Footer -->
+  <section class="reveal" id="contact">
+    <div class="contact-section">
+      <div class="contact-card glass-panel">
+        <span class="section-subtitle">Reach Out</span>
+        <h2 class="section-title" style="margin-bottom: 32px; text-align: center;">Send a Direct Message</h2>
+        
+        <form id="contact-form">
+          <div class="contact-form-grid">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Name</label>
+              <input type="text" id="contact-name" class="form-input interactive-element" required placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email</label>
+              <input type="email" id="contact-email" class="form-input interactive-element" required placeholder="your.email@example.com">
+            </div>
+            <div class="form-group full-width">
+              <label for="contact-message" class="form-label">Your Message</label>
+              <textarea id="contact-message" class="form-textarea interactive-element" required placeholder="Write your warm wishes here..."></textarea>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <button type="submit" class="btn-pill btn-primary btn-submit interactive-element" id="submit-btn">
+              <span class="btn-text">Send Message ✉️</span>
+              <span class="spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll-to-Top Button -->
+  <button class="scroll-top interactive-element" id="scroll-top-btn" aria-label="Scroll back to top">
+    <svg viewBox="0 0 24 24">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <footer>
+    <p class="footer-text">Made with sincerity for <strong>Sameen Gul</strong> <span>🌸</span></p>
+    <p class="footer-text" style="font-size: 0.75rem; margin-top: 8px; opacity: 0.6;">&copy; 2026 Tribute Space. All rights reserved.</p>
+  </footer>
+
+  <!-- Vanilla Javascript File -->
+  <script src="js/main.js"></script>
+</body>
+</html>
