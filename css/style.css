@@ -1797,26 +1797,42 @@ section {
 /* Footer styling */
 footer {
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 20px;
   border-top: 1px solid var(--card-border);
   position: relative;
   z-index: 1;
+  background: linear-gradient(to top, rgba(255, 79, 135, 0.03), transparent);
 }
 
 .footer-text {
-  font-size: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-main);
+  opacity: 0.95;
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+}
+
+.footer-signature {
+  font-family: var(--font-accent);
+  font-size: 2.4rem;
+  color: var(--accent-color);
+  display: block;
+  margin-top: 8px;
+  text-shadow: 0 0 12px var(--accent-glow);
+  animation: floatSignature 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatSignature {
+  0% { transform: translateY(0) rotate(-1deg); }
+  100% { transform: translateY(-4px) rotate(1deg); }
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  margin-top: 16px;
+  opacity: 0.65;
   color: var(--text-muted);
-}
-
-.footer-text span {
-  color: var(--rose);
-  animation: heartPulse 1.5s infinite alternate;
-  display: inline-block;
-}
-
-@keyframes heartPulse {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.15); }
 }
 
 /* Reveal on scroll base classes */
