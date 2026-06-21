@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMemoryWall();
   initSurpriseInteraction();
   initContactForm();
+  initAmbientMusic();
 });
 
 /* ==========================================
@@ -811,3 +812,180 @@ function initContactForm() {
     });
   }
 }
+
+/* ==========================================
+   13. Ambient Procedural Music (Web Audio API)
+   ========================================== */
+function initAmbientMusic() {
+  const musicBtn = document.getElementById('music-btn');
+  if (!musicBtn) return;
+
+  let audioCtx = null;
+  let isPlaying = false;
+  let chimeInterval = null;
+  let padInterval = null;
+  let delayNode = null;
+  let feedbackNode = null;
+  let mainGain = null;
+
+  // Pentatonic notes for dreamy chimes (C major pentatonic across octaves)
+  const chimeNotes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+  
+  // Chords for soft background pads (Low root notes & support notes)
+  const padChords = [
+    [130.81, 164.81, 196.00, 261.63], // C Major
+    [110.00, 130.81, 164.81, 220.00], // A Minor
+    [174.61, 220.00, 261.63, 349.23], // F Major
+    [196.00, 246.94, 293.66, 392.00]  // G Major
+  ];
+  let chordIndex = 0;
+
+  function initAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Master gain
+    mainGain = audioCtx.createGain();
+    mainGain.gain.setValueAtTime(0.08, audioCtx.currentTime); // keep it soft and background
+
+    // Create a beautiful stereo-delay/reverb effect for spatial depth
+    delayNode = audioCtx.createDelay(1.0);
+    feedbackNode = audioCtx.createGain();
+
+    delayNode.delayTime.setValueAtTime(0.6, audioCtx.currentTime); // 600ms echo
+    feedbackNode.gain.setValueAtTime(0.4, audioCtx.currentTime);   // 40% feedback
+
+    // Connect nodes: Synth -> Delay -> Feedback -> Delay (loop)
+    // Synth -> mainGain -> destination
+    // Synth -> delayNode -> mainGain
+    delayNode.connect(feedbackNode);
+    feedbackNode.connect(delayNode);
+    
+    delayNode.connect(mainGain);
+    mainGain.connect(audioCtx.destination);
+  }
+
+  // Play a soft bell/chime note
+  function playChime() {
+    if (!audioCtx || audioCtx.state === 'suspended') return;
+    
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    // Soft sine wave for clean bell sound
+    osc.type = 'sine';
+    
+    // Pick random note from pentatonic scale
+    const note = chimeNotes[Math.floor(Math.random() * chimeNotes.length)];
+    osc.frequency.setValueAtTime(note, now);
+    
+    // Envelope: rapid attack, long decay
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.12, now + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.0);
+    
+    osc.connect(gain);
+    gain.connect(mainGain);
+    // Send some signal directly to delay for echo
+    gain.connect(delayNode);
+    
+    osc.start(now);
+    osc.stop(now + 3.2);
+  }
+
+  // Play a warm, slow pad chord
+  function playPad() {
+    if (!audioCtx || audioCtx.state === 'suspended') return;
+    
+    const now = audioCtx.currentTime;
+    const chord = padChords[chordIndex];
+    chordIndex = (chordIndex + 1) % padChords.length;
+
+    // Play 4 oscillators simultaneously with small frequency detunes
+    chord.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      // Triangle waves have a softer, warmer, flute-like tone
+      osc.type = 'triangle';
+      
+      // Slightly detune to create a rich chorus effect
+      const detune = (idx % 2 === 0 ? 3 : -3);
+      osc.frequency.setValueAtTime(freq, now);
+      osc.detune.setValueAtTime(detune, now);
+      
+      // Pad envelope: very slow attack (3 seconds), sustained, then slow release (4 seconds)
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.06, now + 3.0);
+      gain.gain.setValueAtTime(0.06, now + 5.0);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 9.0);
+      
+      osc.connect(gain);
+      gain.connect(mainGain);
+      
+      osc.start(now);
+      osc.stop(now + 9.5);
+    });
+  }
+
+  function startMusic() {
+    if (!audioCtx) {
+      initAudio();
+    }
+    
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    
+    isPlaying = true;
+    musicBtn.classList.add('playing');
+    
+    // Play immediately, then set interval loops
+    playPad();
+    playChime();
+    
+    // Chimes play every 3.5 seconds
+    chimeInterval = setInterval(playChime, 3500);
+    
+    // Chords play every 8.5 seconds
+    padInterval = setInterval(playPad, 8500);
+  }
+
+  function stopMusic() {
+    isPlaying = false;
+    musicBtn.classList.remove('playing');
+    
+    clearInterval(chimeInterval);
+    clearInterval(padInterval);
+    
+    if (audioCtx && audioCtx.state === 'running') {
+      // Smooth fade out of master volume before suspending
+      const now = audioCtx.currentTime;
+      mainGain.gain.setValueAtTime(mainGain.gain.value, now);
+      mainGain.gain.linearRampToValueAtTime(0, now + 0.5);
+      
+      setTimeout(() => {
+        if (!isPlaying) {
+          audioCtx.suspend();
+        }
+      }, 600);
+    }
+  }
+
+  musicBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      stopMusic();
+    } else {
+      startMusic();
+    }
+  });
+
+  // Hover animations for cursor
+  musicBtn.addEventListener('mouseenter', () => {
+    document.body.classList.add('cursor-hover');
+  });
+  musicBtn.addEventListener('mouseleave', () => {
+    document.body.classList.remove('cursor-hover');
+  });
+}
+

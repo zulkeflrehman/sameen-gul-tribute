@@ -447,8 +447,9 @@ body {
   gap: 16px;
 }
 
-/* Theme Toggle Button */
-.theme-toggle {
+/* Theme Toggle & Music Toggle Buttons */
+.theme-toggle,
+.music-toggle {
   background: transparent;
   border: 1px solid var(--card-border);
   width: 40px;
@@ -462,12 +463,14 @@ body {
   transition: background 0.3s, border-color 0.3s, transform 0.3s;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.music-toggle:hover {
   background: var(--card-bg);
   transform: scale(1.05);
 }
 
-.theme-toggle svg {
+.theme-toggle svg,
+.music-toggle svg {
   width: 18px;
   height: 18px;
   fill: none;
@@ -497,6 +500,36 @@ body {
 .dark .theme-toggle .moon-icon {
   opacity: 1;
   transform: rotate(0) scale(1);
+}
+
+/* Music Toggle Specifics */
+.music-toggle .icon-muted {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.music-toggle .icon-playing {
+  opacity: 0;
+  transform: scale(0) rotate(-45deg);
+}
+
+.music-toggle.playing .icon-muted {
+  opacity: 0;
+  transform: scale(0) rotate(45deg);
+}
+
+.music-toggle.playing .icon-playing {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+.music-toggle.playing svg.icon-playing {
+  animation: pulseMusic 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseMusic {
+  0% { transform: scale(1); filter: drop-shadow(0 0 1px var(--accent-glow)); }
+  100% { transform: scale(1.1); filter: drop-shadow(0 0 8px var(--accent-glow)); }
 }
 
 /* Mobile Menu Toggle */
